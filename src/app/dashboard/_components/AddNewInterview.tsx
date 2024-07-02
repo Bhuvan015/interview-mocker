@@ -7,7 +7,6 @@ import {
   DialogDescription,
   DialogHeader,
   DialogTitle,
-  DialogTrigger,
 } from "@/components/ui/dialog";
 import { v4 as uuidv4 } from 'uuid';
 import { Button } from "@/components/ui/button";
@@ -19,6 +18,7 @@ import { db } from "@/utils/db";
 import { MockInterview } from "@/utils/schema";
 import { useUser } from "@clerk/nextjs";
 import dayjs from "dayjs";
+import { useRouter } from "next/navigation";
 
 const AddNewInterview = () => {
   const [openDialog, setOpenDialog] = useState<boolean>(false);
@@ -27,6 +27,7 @@ const AddNewInterview = () => {
   const [jobExperience, setJobExperience] = useState('')
   const [loading, setLoading] = useState<boolean>(false)
   const [jsonResponse, setJsonResponse] = useState()
+  const router = useRouter()
   const {user} = useUser()
   const onSubmit = async (e: any) => {
     e.preventDefault()
@@ -51,6 +52,7 @@ const AddNewInterview = () => {
         })
         if(res) {
             setOpenDialog(false)
+            router.push(`/dashboard/interview/${res?.[0]?.mockId}`)
         }
         console.log('inserted id', res)
     }
