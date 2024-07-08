@@ -35,7 +35,6 @@ const AddNewInterview = () => {
     const inputPromt = `Job Position: ${jobPosition}, Job Description: ${jobDesciption}, Years of Experience: ${jobExperience}. Depending on the job position, job description and years of experience give us ${process.env.NEXT_PUBLIC_INTERVIEW_QUESTIONS_COUNT} interview questions along with answers in json format. Give us question and answer field on json`
     const result = await chatSession.sendMessage(inputPromt)
     const mockJsonResponse = (result?.response?.text()).replace('```json', '').replace('```', '')
-    console.log(JSON.parse(mockJsonResponse))
     setJsonResponse(mockJsonResponse)
     if(mockJsonResponse) {
         setLoading(false)
@@ -54,7 +53,6 @@ const AddNewInterview = () => {
             setOpenDialog(false)
             router.push(`/dashboard/interview/${res?.[0]?.mockId}`)
         }
-        console.log('inserted id', res)
     }
   }
   return (
@@ -85,7 +83,7 @@ const AddNewInterview = () => {
             </div>
             <div className="flex gap-5 justify-end">
             <Button variant={'ghost'} type={'button'} onClick={() => setOpenDialog(false)}>Cancel</Button>
-            <Button type="submit" disabled={loading}>{ loading ? <><LoaderCircle className="animate-spin"/>Generating from AI</>  : 'Start Interview'}</Button>
+            <Button type="submit" disabled={loading} className={'text-white'}>{ loading ? <><LoaderCircle className="animate-spin"/>Generating from AI</>  : 'Start Interview'}</Button>
             </div>
                 </form>
            
