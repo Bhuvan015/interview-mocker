@@ -63,7 +63,7 @@ const StartInterview: React.FC<{ params: any }> = ({ params }) => {
           </Button>
         )}
         {activeQuestionIndex === mockInterviewQuestions?.length - 1 && (
-          <Link href={`/dashboard/interview${interviewData?.mockId}/feedback`}>
+          <Link href={`/dashboard/interview/${interviewData?.mockId}/feedback`}>
             <Button>End Interview</Button>
           </Link>
         )}

@@ -16,9 +16,9 @@ export const UserAnswer = pgTable('userAnswer', {
      mockIdRef: varchar('mockId').notNull(),
      correctAns: varchar('correctAns'),
      userAns: varchar('userAns'),
-     question: text('userAns').notNull(),
+     question: text('question').notNull(),
      feedback: text('feedback'),
      rating: varchar('rating'),
-     userEmail: varchar('userEamil'),
+     userEmail: varchar('userEmail'),
      createdAt: varchar('createdAt')
 })

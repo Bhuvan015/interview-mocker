@@ -44,6 +44,7 @@ const RecordAnswerSection: React.FC<{
   };
 
   const updateUserAnswer = async () => {
+    console.log(userAnswer, 'ansert')
     setLoading(true)
     const feedbackPrompt = "Question" +  mockInterviewQuestions?.[activeQuestionIndex]?.question + ", User Answer" + userAnswer+", Depends on question and user answer for given interview question please give us rating for answer and feedback as area of improvement if any in just 3 - 5 lines to improve it in JSON format with rating field and feedback field";
     const result = await chatSession.sendMessage(feedbackPrompt)
@@ -69,7 +70,10 @@ const RecordAnswerSection: React.FC<{
   }
 
   useEffect(() => {
-    if(!isRecording && userAnswer?.length > 10) {
+    console.log(userAnswer)
+    if(!isRecording 
+      && userAnswer?.length > 3
+      ) {
       updateUserAnswer()
     }
     // if (userAnswer?.length < 10) {
